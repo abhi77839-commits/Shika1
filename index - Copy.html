@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Comic Sans MS', cursive;
+  background: linear-gradient(135deg, #ff6f91, #ff9aa2, #ffc3a0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.container {
+  color: white;
+  text-shadow: 0 0 20px rgba(255,255,255,0.8);
+}
+
+h1 {
+  font-size: 50px;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin: 10px;
+  transition: 0.3s;
+}
+
+#yes {
+  background: #ff4d6d;
+  color: white;
+  box-shadow: 0 0 20px rgba(255,0,100,0.6);
+}
+
+#no {
+  background: #333;
+  color: white;
+  position: absolute;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+/* FLOATING HEARTS */
+.heart {
+  position: absolute;
+  color: red;
+  font-size: 20px;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  0% {transform: translateY(100vh) scale(0);}
+  100% {transform: translateY(-10vh) scale(1.5);}
+}
+
+/* CENTER POPUP (BIG) */
+.popup {
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ff4d6d;
+  color: white;
+  padding: 20px 35px;
+  border-radius: 25px;
+  font-size: 27px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+  z-index: 999;
+  animation: popAnim 5s ease;
+}
+
+@keyframes popAnim {
+  0% {opacity: 0; transform: translate(-50%, -60%) scale(0.8);}
+  50% {opacity: 1; transform: translate(-50%, -50%) scale(1.1);}
+  100% {opacity: 0; transform: translate(-50%, -40%) scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1 id="text"></h1>
+
+  <div class="buttons">
+    <button id="yes" onclick="yesClick()">Yes 💖</button>
+    <button id="no" onmouseover="moveNo()">No 😢</button>
+  </div>
+</div>
+
+<script>
+// ❤️ CHANGE NAME HERE
+const name = "Shikha Shukla";
+
+document.getElementById("text").innerHTML =
+  name + " ❤️<br>Will you be my Future Wife?";
+
+// YES CLICK 💖
+function yesClick() {
+  document.body.innerHTML =
+    "<h1 style='color:white; font-size:50px;'>I Love You ❤️🥰</h1>";
+}
+
+// MOVING NO BUTTON 😈
+function moveNo() {
+  let btn = document.getElementById("no");
+  let x = Math.random() * (window.innerWidth - 100);
+  let y = Math.random() * (window.innerHeight - 50);
+  btn.style.left = x + "px";
+  btn.style.top = y + "px";
+}
+
+// FLOATING HEARTS 💖
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 300);
+
+// CENTER BIG POPUP 😄
+function showMessage() {
+  const msg = document.createElement("div");
+  msg.classList.add("popup");
+  msg.innerText = "Single rehna hai kya? 😏";
+  document.body.appendChild(msg);
+
+  setTimeout(() => msg.remove(), 2000);
+}
+
+// RANDOM POPUP
+setInterval(() => {
+  if (Math.random() > 0.5) {
+    showMessage();
+  }
+}, 3000);
+</script>
+
+</body>
+</html>
